@@ -1,7 +1,10 @@
 const express = require('express')
 const moment = require('moment')
 
-const router = express.Router()
+const router = express.Router({
+    'caseSensitive': true,
+    'strict': true
+})
 
 router.route('/:timestamp')
     .get((request, response) => {
