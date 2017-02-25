@@ -18,8 +18,8 @@ router.route('/:timestamp')
             })
         } else {
             response.status(400).json({
-                'unix-n': null,
-                'natural-n': null
+                'unix': null,
+                'natural': null
             })
         }
     })
