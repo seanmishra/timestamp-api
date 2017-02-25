@@ -6,9 +6,7 @@ const slash = require('express-slash')
 const app = express()
 app.use(methodFilter)
 
-//static serving with workaround for proxy
-app.get('/', (req, res) => { res.redirect(301, 'api/') })
-app.use('/api/' ,express.static('./public/'))
+app.use(express.static('./public/'))
 
 app.use('/', root)
 app.use(slash())
