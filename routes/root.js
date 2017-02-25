@@ -8,7 +8,9 @@ const router = express.Router({
 
 router.route('/:timestamp')
     .get((request, response) => {
-        let timestamp = moment(new Date(request.params.timestamp))
+        let timestamp = request.params.timestamp
+        if(Date.parse(timestamp)) timestamp = moment(timestamp)
+        else timestamp = moment.unix(timestamp)
         if(timestamp.isValid()) {
             response.json({
                 'unix': timestamp.format('X'),
@@ -16,8 +18,8 @@ router.route('/:timestamp')
             })
         } else {
             response.status(400).json({
-                'unix': null,
-                'natural': null
+                'unix-n': null,
+                'natural-n': null
             })
         }
     })
